@@ -81,7 +81,7 @@ def get_conv_model():
 
 
 
-df = pd.read_csv('Audio-Classification/instruments.csv')
+df = pd.read_csv('Audio-Classification/instruments(1).csv')
 df.set_index('fname', inplace=True)
 
 for f in df.index:
