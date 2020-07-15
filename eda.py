@@ -84,11 +84,11 @@ def calc_fft(y, rate):
   Y= abs(np.fft.rfft(y)/n)
   return(Y,freq)
 
-df=pd.read_csv("Audio-Classification/instruments.csv")
+df=pd.read_csv("Audio-Classification/instruments(1).csv")
 df.set_index('fname',inplace=True)
 
 for f in df.index :
-  rate, signal =wavfile.read("Audio-Classification/wavfiles/"+f)
+  rate, signal =wavfile.read("Audio-Classification/wavfiles1/"+f)
   df.at[f,'length']=signal.shape[0]/rate
 
 classes=list(np.unique(df.label))
@@ -109,7 +109,7 @@ mfccs={}
 
 for c in classes :
   wav_file=df[df.label==c].iloc[0,0]
-  signal, rate = librosa.load('Audio-Classification/wavfiles/'+wav_file,sr=44100)
+  signal, rate = librosa.load('Audio-Classification/wavfiles1/'+wav_file,sr=44100)
   mask = envelope ( signal , rate, 0.0005)
   signal=signal[mask]
   signals[c]=signal
@@ -136,6 +136,6 @@ plt.savefig("fbank.png")
 
 if len(os.listdir('Audio-Classification/Clean'))==0:
   for f in tqdm(df.fname):
-    signal , rate = librosa.load("Audio-Classification/wavfiles/"+f, sr=16000)
+    signal , rate = librosa.load("Audio-Classification/wavfiles1/"+f, sr=16000)
     mask = envelope ( signal , rate, 0.0005)
     wavfile.write(filename='Audio-Classification/Clean/'+f, rate=rate, data=signal[mask])
