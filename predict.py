@@ -45,7 +45,7 @@ def build_predictions(audio_dir):
 
 
 
-df = pd.read_csv('Audio-Classification/instruments.csv')
+df = pd.read_csv('Audio-Classification/instruments(1).csv')
 classes= list(np.unique(df.label))
 fn2classes=dict(zip(df.fname,df.label))
 p_path=os.path.join('Audio-Classification/Pickles','conv.p')
